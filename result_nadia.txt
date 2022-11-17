@@ -1,0 +1,20 @@
+A demonstração está correta.
+
+Código da demonstração no estilo Fitch em Latex:
+\begin{logicproof}{6}
+A\lor B & premissa\\
+A\rightarrow C & premissa\\
+B\rightarrow C & premissa\\
+\begin{subproof}
+A & hipótese\\
+C & $\rightarrow e$ 4, 2
+\end{subproof}
+\begin{subproof}
+B & hipótese\\
+C & $\rightarrow e$ 6, 3
+\end{subproof}
+C & $\lor e$ 1, 4-5, 6-7
+\end{logicproof}
+
+Código da demonstração no estilo Gentzen em Latex:
+\[\infer[\!\!{\lor\text{e, }1, 2}]{C}{{{A\lor B}}&{\infer[\!\!{\rightarrow\text{e}}]{C}{{\big[A\big]^{_{1}}}&{{A\rightarrow C}}}}&{\infer[\!\!{\rightarrow\text{e}}]{C}{{\big[B\big]^{_{2}}}&{{B\rightarrow C}}}}}\]
