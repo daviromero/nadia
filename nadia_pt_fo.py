@@ -146,18 +146,18 @@ class NegationFormula():
       return NegationFormula(self.formula.substitution(var_x, a))
 
 
-class AthomFormula():
+class AtomFormula():
     def __init__(self, key = None):
         self.key = key
 
     def __eq__(self, other): 
-        if not isinstance(other, AthomFormula):
+        if not isinstance(other, AtomFormula):
             return NotImplemented
 
         return self.key == other.key
     
     def __ne__(self, other): 
-        if not isinstance(other, AthomFormula):
+        if not isinstance(other, AtomFormula):
             return NotImplemented
 
         return self.key != other.key
@@ -184,9 +184,9 @@ class AthomFormula():
       return True 
 
     def substitution(self, var_x, a):
-      return AthomFormula(self.key)
+      return AtomFormula(self.key)
 
-class BottonFormula(AthomFormula):
+class BottonFormula(AtomFormula):
     def __init__(self):
       super().__init__(key='@')
 
@@ -416,8 +416,8 @@ class Lexer():
         #Variable
         self.lexer.add('VAR', r'(?!pre|hip)[a-z][a-z0-9]*')
 
-        # Athom
-        self.lexer.add('ATHOM', r'[A-Z][A-Z0-9]*' )
+        # Atom
+        self.lexer.add('ATOM', r'[A-Z][A-Z0-9]*' )
 
         # Ignore spaces and comments
         self.lexer.ignore('##[^##]*##')
@@ -1455,7 +1455,7 @@ class ParserNadia():
             # A list of all token names accepted by the parser.
             ['NUM', 'DOT', 'COMMA', 'OPEN_PAREN', 'CLOSE_PAREN', 'NOT', 'RAA',
              'AND', 'OR', 'OR_INTROD', 'OR_ELIM', 'BOTTOM','BOTTOM_ELIM', 'OPEN_BRACKET', 'AND_INTROD',
-             'AND_ELIM', 'NEG_INTROD', 'NEG_ELIM', 'HYPOTHESIS', 'PREMISE', 'ATHOM', 'CLOSE_BRACKET',
+             'AND_ELIM', 'NEG_INTROD', 'NEG_ELIM', 'HYPOTHESIS', 'PREMISE', 'ATOM', 'CLOSE_BRACKET',
              'DASH', 'COPY', 'IMP_ELIM', 'IMPLIE', 'IMP_INTROD',
              'VAR', 'EXT', 'ALL', 'ALL_ELIM', 'EXT_INTROD', 'EXT_ELIM', 'ALL_INTROD' ],
             #The precedence $\lnot,\forall,\exists,\land,\lor,\rightarrow,\leftrightarrow$
@@ -1768,17 +1768,17 @@ class ParserNadia():
 
 
         @self.pg.production('step : NUM DOT formula HYPOTHESIS')
-        @self.pg.production('step : NUM DOT formula ATHOM')
-        @self.pg.production('step : NUM DOT OPEN_BRACKET formula ATHOM')
+        @self.pg.production('step : NUM DOT formula ATOM')
+        @self.pg.production('step : NUM DOT OPEN_BRACKET formula ATOM')
         def Wrong_pre_hip(p):
             self.has_error = True
             wrong_rule = WrongDef(p[0].value, p[-2])
             deduction_result.add_error(self.get_error(constants.INVALID_HIP_PRE_WRITE, p[-1], wrong_rule))
             return p[0], p[-2]
 
-        @self.pg.production('step : NUM DOT formula PREMISE ATHOM')
-        @self.pg.production('step : NUM DOT formula HYPOTHESIS ATHOM')
-        @self.pg.production('step : NUM DOT OPEN_BRACKET formula HYPOTHESIS ATHOM')
+        @self.pg.production('step : NUM DOT formula PREMISE ATOM')
+        @self.pg.production('step : NUM DOT formula HYPOTHESIS ATOM')
+        @self.pg.production('step : NUM DOT OPEN_BRACKET formula HYPOTHESIS ATOM')
         def Wrong_pre_hip(p):
             self.has_error = True
             wrong_rule = WrongDef(p[0].value, p[-3])
@@ -1978,16 +1978,16 @@ class ParserNadia():
         @self.pg.production('formula : formula AND formula')
         @self.pg.production('formula : formula IMPLIE formula')
         @self.pg.production('formula : NOT formula')
-        @self.pg.production('formula : ATHOM OPEN_PAREN variableslist CLOSE_PAREN')
-        @self.pg.production('formula : ATHOM')
+        @self.pg.production('formula : ATOM OPEN_PAREN variableslist CLOSE_PAREN')
+        @self.pg.production('formula : ATOM')
         @self.pg.production('formula : BOTTOM')
         def formula(p):
             #print(p)
             if len(p) < 3:
-                if p[0].gettokentype() == 'ATHOM':
-                    return p[0], AthomFormula(key=p[0].value)
+                if p[0].gettokentype() == 'ATOM':
+                    return p[0], AtomFormula(key=p[0].value)
                 elif p[0].gettokentype() == 'BOTTOM':
-                    return p[0], AthomFormula(key=p[0].value)
+                    return p[0], AtomFormula(key=p[0].value)
                 elif p[0].gettokentype() == 'NOT':
                     result = p[1]
                     return p[0], NegationFormula(formula=result[1])  
@@ -2238,7 +2238,7 @@ class ParserTheorem():
         self.pg = ParserGenerator(
             # A list of all token names accepted by the parser.
             ['COMMA', 'OPEN_PAREN', 'CLOSE_PAREN', 'NOT',
-             'AND', 'OR',  'BOTTOM','ATHOM', 'IMPLIE', 'IFF',
+             'AND', 'OR',  'BOTTOM','ATOM', 'IMPLIE', 'IFF',
              'VAR','EXT','ALL', 'V_DASH' ],
             #The precedence $\lnot,\forall,\exists,\land,\lor,\rightarrow,\leftrightarrow$
             precedence=[
@@ -2268,15 +2268,15 @@ class ParserTheorem():
         @self.pg.production('formula : formula IMPLIE formula')
         @self.pg.production('formula : formula IFF formula')
         @self.pg.production('formula : NOT formula')
-        @self.pg.production('formula : ATHOM OPEN_PAREN variableslist CLOSE_PAREN')
-        @self.pg.production('formula : ATHOM')
+        @self.pg.production('formula : ATOM OPEN_PAREN variableslist CLOSE_PAREN')
+        @self.pg.production('formula : ATOM')
         @self.pg.production('formula : BOTTOM')
         def formula(p):
             if len(p) < 3:
-                if p[0].gettokentype() == 'ATHOM':
-                    return p[0], AthomFormula(key=p[0].value)
+                if p[0].gettokentype() == 'ATOM':
+                    return p[0], AtomFormula(key=p[0].value)
                 elif p[0].gettokentype() == 'BOTTOM':
-                    return p[0], AthomFormula(key=p[0].value)
+                    return p[0], AtomFormula(key=p[0].value)
                 elif p[0].gettokentype() == 'NOT':
                     result = p[1]
                     return p[0], NegationFormula(formula=result[1])  
@@ -2418,7 +2418,7 @@ class ParserFormula():
         self.pg = ParserGenerator(
             # A list of all token names accepted by the parser.
             ['COMMA', 'OPEN_PAREN', 'CLOSE_PAREN', 'NOT',
-             'AND', 'OR',  'BOTTOM','ATHOM', 'IMPLIE', 'IFF',
+             'AND', 'OR',  'BOTTOM','ATOM', 'IMPLIE', 'IFF',
              'VAR','EXT','ALL' ],
             #The precedence $\lnot,\forall,\exists,\land,\lor,\rightarrow,\leftrightarrow$
             precedence=[
@@ -2445,16 +2445,16 @@ class ParserFormula():
         @self.pg.production('formula : formula IMPLIE formula')
         @self.pg.production('formula : formula IFF formula')
         @self.pg.production('formula : NOT formula')
-        @self.pg.production('formula : ATHOM OPEN_PAREN variableslist CLOSE_PAREN')
-        @self.pg.production('formula : ATHOM')
+        @self.pg.production('formula : ATOM OPEN_PAREN variableslist CLOSE_PAREN')
+        @self.pg.production('formula : ATOM')
         @self.pg.production('formula : BOTTOM')
         def formula(p):
             #print(p)
             if len(p) < 3:
-                if p[0].gettokentype() == 'ATHOM':
-                    return p[0], AthomFormula(key=p[0].value)
+                if p[0].gettokentype() == 'ATOM':
+                    return p[0], AtomFormula(key=p[0].value)
                 elif p[0].gettokentype() == 'BOTTOM':
-                    return p[0], AthomFormula(key=p[0].value)
+                    return p[0], AtomFormula(key=p[0].value)
                 elif p[0].gettokentype() == 'NOT':
                     result = p[1]
                     return p[0], NegationFormula(formula=result[1])  
