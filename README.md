@@ -1,6 +1,6 @@
 # Natural Deduction Proof Assistant (NADIA)
 
-The NADIA is a tool written in Python that can be used in *desktop*, or in a [web platform](https://sistemas.quixada.ufc.br/nadia/). The main idea is that the students can write their proofs as similar as possible to what is available in the textbooks and to what the students would usually write on paper. NADIA allows the students to automatically check whether a proof in the analytic tableaux is valid. If the proof is not correct, NADIA will display the errors of the proof. So, the students may make mistakes and learn from the errors. The web interface is very easy-to-use and has: 
+The NADIA is a tool written in Python that can be used in *desktop*, or in a [web platform](https://sistemas.quixada.ufc.br/nadia/). The main idea is that the students can write their proofs as similar as possible to what is available in the textbooks and to what the students would usually write on paper. NADIA allows the students to automatically check whether a proof in the natural deduction is valid. If the proof is not correct, NADIA will display the errors of the proof. So, the students may make mistakes and learn from the errors. The web interface is very easy-to-use and has: 
 - An area for editing the proof in plain text. The students should write a proof in the Fitch-style (see [ND Rules](ND-Rules.pdf)).
 - A message area to display whether the proof is valid, the countermodel, or the errors on the proof.
 - And the following links: 
