@@ -1,4 +1,4 @@
-from nadia_pt_fo import check_proof
+from nadia.nadia_pt_fo import check_proof
 
 print(check_proof('''1. A|B              pre
 2. A->C             pre

@@ -47,7 +47,7 @@ voila nadia_pt.ipynb
 ## NADIA in your code
 You can import NADIA in your code (basic usage)
 ```bash
-from nadia_pt_fo import check_proof
+from nadia.nadia_pt_fo import check_proof
 
 print(check_proof('''1. A|B              pre
 2. A->C             pre
@@ -59,5 +59,3 @@ print(check_proof('''1. A|B              pre
 7.      C           ->e 6,3
    }
 8. C                |e 1, 4-5, 6-7'''))```
-
-# nadia

@@ -1,7 +1,7 @@
 import ipywidgets as widgets
 from IPython.display import display, Markdown
 import traceback
-from nadia_pt_fo import ParserNadia, ParserTheorem, ParserFormula
+from nadia.nadia_pt_fo import ParserNadia, ParserTheorem, ParserFormula
 
 def nadia(input_string='', height_layout='300px',default_gentzen=True, default_fitch=True):
   layout = widgets.Layout(width='90%', height=height_layout)
