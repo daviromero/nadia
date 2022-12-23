@@ -29,19 +29,19 @@ To facilitate the writing of the proofs, we made the following conventions in NA
 ![](NADIA-EXAMPLE.png)
 
 ## License
-NADIA is available by a [**MIT License**](https://github.com/daviromero/nadia/blob/main/license.txt).
+NADIA is available by [**MIT License**](https://github.com/daviromero/nadia/blob/main/license.txt).
 
 ## Requirements:
-- You must install the [rply 0.7.8 package](https://pypi.org/project/rply/)
+- You must install [rply 0.7.8 package](https://pypi.org/project/rply/)
 
 ## Install
 
-To install NADIA from the Github, run the following command:
+To install NADIA from Github, run the following command:
 ```bash
 pip install git+https://github.com/daviromero/nadia.git
 ```
 
-To install NADIA from the PyPi repository, run the following command:
+To install NADIA from PyPi repository, run the following command:
 ```bash
 pip install nadia-proof
 ```
