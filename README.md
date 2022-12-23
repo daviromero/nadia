@@ -1,7 +1,7 @@
 # Natural Deduction Proof Assistant (NADIA)
 
-The NADIA is a tool written in Python that can be used in *desktop*, or in a [web platform](https://sistemas.quixada.ufc.br/nadia/). The main idea is that the students can write their proofs as similar as possible to what is available in the textbooks and to what the students would usually write on paper. NADIA allows the students to automatically check whether a proof in the natural deduction is valid. If the proof is not correct, NADIA will display the errors of the proof. So, the students may make mistakes and learn from the errors. The web interface is very easy-to-use and has: 
-- An area for editing the proof in plain text. The students should write a proof in the Fitch-style (see [ND Rules](ND-Rules.pdf)).
+The NADIA is a tool written in Python that can be used as a desktop application, or in a [web platform](https://sistemas.quixada.ufc.br/nadia/). The main idea is that the students can write their proofs as similar as possible to what is available in the textbooks and to what the students would usually write on paper. NADIA allows the students to automatically check whether a proof in the natural deduction is valid. If the proof is not correct, NADIA will display the errors of the proof. So, the students may make mistakes and learn from the errors. The web interface is very easy-to-use and has: 
+- An area for editing the proof in plain text. The students should write a proof in Fitch-style (see [ND Rules](ND-Rules.pdf)).
 - A message area to display whether the proof is valid, the countermodel, or the errors on the proof.
 - And the following links: 
   - Check, to check the correctness of the proof; 
@@ -29,15 +29,27 @@ To facilitate the writing of the proofs, we made the following conventions in NA
 ![](NADIA-EXAMPLE.png)
 
 ## License
-NADIA is avalible by a [**MIT License**](license.txt).
+NADIA is available by a [**MIT License**](./license.txt).
 
 ## Requirements:
 - You must install the [rply 0.7.8 package](https://pypi.org/project/rply/)
 
+## Install
+
+To install NADIA from the Github, run the following command:
+```bash
+pip install git+https://github.com/daviromero/nadia.git
+```
+
+To install NADIA from the PyPi repository, run the following command:
+```bash
+pip install nadia-proof
+```
+
 ## NADIA
 You can run NADIA with the command line: 
 ```bash
-python nadia_pt.py [-i input file] [-output file]
+python nadia_pt.py [-i input_file] [-o output_file]
 ```
 ## NADIA in Voila
 You can run NADIA in Jupyter Nootebook or in a [Voilà](https://voila.readthedocs.io/) 
