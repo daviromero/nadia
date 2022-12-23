@@ -14,8 +14,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     url='https://github.com/daviromero/nadia',
-    description='''NADIA is a proof assistant for teaching natural deduction to computer science students. 
-    NADIA allows students to write their proofs and automatically checks whether the proofs are correct and, if not, displays any errors found.''',
+    description='''NADIA is a proof assistant for teaching natural deduction to computer science students. NADIA allows students to write their proofs and automatically checks whether the proofs are correct and, if not, displays any errors found.''',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords='Natural Deduction, Teaching Logic, Educational Software', 
