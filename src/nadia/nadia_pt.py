@@ -1,6 +1,6 @@
 import argparse
 import traceback
-from nadia_pt_fo import ParserNadia
+from nadia.nadia_pt_fo import ParserNadia
 
 parser = argparse.ArgumentParser(description='NADIA - Natural Deduction Proof Assistant.')
 parser.add_argument("-i", type=str,help="Arquivo de entrada com a prova em NADIA.")
