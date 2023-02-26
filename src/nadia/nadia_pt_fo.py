@@ -1584,7 +1584,6 @@ class ParserNadia():
           # If box is not imediatally closed by the rule 
           if int(rule.line) != int(rule.reference2.value)+1 and not rule.is_copied:
               self.has_error = True
-              print(int(rule.line),int(rule.reference2.value)+1)
               deduction_result.add_error(self.get_error(constants.BOX_MUST_BE_DISPOSED_BY_RULE, rule.reference1, rule))
               result = False
 
