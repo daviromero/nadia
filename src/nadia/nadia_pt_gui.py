@@ -3,7 +3,7 @@ from IPython.display import display, Markdown, HTML
 import traceback
 from nadia.nadia_pt_fo import ParserNadia, ParserTheorem, ParserFormula
 
-def nadia(input_proof='', input_text_assumptions=[], input_text_conclusion='', height_layout='300px',default_gentzen=True, default_fitch=True):
+def nadia(input_proof='', input_text_assumptions=[], input_text_conclusion='', height_layout='300px',default_gentzen=False, default_fitch=False):
   layout = widgets.Layout(width='90%', height=height_layout)
   run = widgets.Button(description="Verificar")
   input = widgets.Textarea(
@@ -30,7 +30,8 @@ def nadia(input_proof='', input_text_assumptions=[], input_text_conclusion='', h
     display(Markdown(q_conclusion))
     display(Markdown('### Represente as afirmações acima em lógica e digite sua demonstração em Dedução Natural:'))
     if input_proof=='':
-      input.value = '# Considere a seguinte linguagem não lógica:\n# - ...\n# - ...\n# - ...\n# Representamos as afirmações através das seguintes fórmulas:'
+      #input.value = '# Considere a seguinte linguagem não lógica:\n# - ...\n# - ...\n# - ...\n# Representamos as afirmações através das seguintes fórmulas:'
+      input.value = '# Representamos as afirmações através das seguintes fórmulas:'
       i = 1
       for assumption in input_text_assumptions:
         input.value += f'\n# {i}. ... para "{assumption}"'
