@@ -3,11 +3,11 @@ from IPython.display import display, Markdown, HTML
 import traceback
 from nadia.nadia_pt_fo import ParserNadia, ParserTheorem, ParserFormula
 
-def nadia(input_string='', height_layout='300px',default_gentzen=True, default_fitch=True):
+def nadia(input_proof='', input_text_assumptions=[], input_text_conclusion='', height_layout='300px',default_gentzen=True, default_fitch=True):
   layout = widgets.Layout(width='90%', height=height_layout)
   run = widgets.Button(description="Verificar")
   input = widgets.Textarea(
-      value=input_string,
+      value=input_proof,
       placeholder='Digite sua demonstração:',
       description='',
       layout=layout
@@ -17,8 +17,30 @@ def nadia(input_string='', height_layout='300px',default_gentzen=True, default_f
   output = widgets.Output()
   wButtons = widgets.HBox([run, cGentzen, cFitch])
   
-  display(widgets.HTML('<h3>Digite a demonstração em Dedução Natural:</h3>'), 
-          input, wButtons, output)
+  if input_text_conclusion!='':
+    display(Markdown( r'<b>Considere as seguintes afirmações:</b>'))
+    q_assumptions =''
+    i = 1
+    for assumption in input_text_assumptions:
+      q_assumptions += f'\n1. {assumption}'
+      i+=1
+    display(Markdown(q_assumptions))
+    display(Markdown(r'<b>Considere a afirmação abaixo segue logicamente das afirmações acima:'))
+    q_conclusion =f'\n{i}. {input_text_conclusion}'
+    display(Markdown(q_conclusion))
+    display(Markdown('### Represente as afirmações acima em lógica e digite sua demonstração em Dedução Natural:'))
+    if input_proof=='':
+      input.value = '# Considere a seguinte linguagem não lógica:\n# - ...\n# - ...\n# - ...\n# Representamos as afirmações através das seguintes fórmulas:'
+      i = 1
+      for assumption in input_text_assumptions:
+        input.value += f'\n# {i}. ... para "{assumption}"'
+        i+=1
+      input.value += f'\n# {i}. ... para "{input_text_conclusion}"'
+      input.value += '\n# Assim, devemos demonstrar que o raciocínio abaixo é válido:'
+      input.value += '\n# ...'
+  else:  
+    display(Markdown('### Digite sua demonstração em Dedução Natural:'))
+  display(input, wButtons, output)
 
   def on_button_run_clicked(_):
     output.clear_output()
