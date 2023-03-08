@@ -26,7 +26,7 @@ To facilitate the writing of the proofs, we made the following conventions in NA
 | LaTeX  |  $\backslash\textrm{lnot}$ | $\backslash\textrm{land}$ | $\backslash\textrm{lor}$ | $\backslash\textrm{rightarrow}$ | $\backslash\textrm{forall x}$ | $\backslash\textrm{exists x}$ | $\backslash\textrm{bot}$ | $[.~]$ | $\backslash\textrm{vdash}$ |
 | NADIA |  ~  | \& | $\mid$ | -> | Ax | Ex | @  | { } | \|- |
 
-![](NADIA-EXAMPLE.png)
+![](https://github.com/daviromero/nadia/blob/main/NADIA-EXAMPLE.png)
 
 ## License
 NADIA is available by [**MIT License**](https://github.com/daviromero/nadia/blob/main/license.txt).
