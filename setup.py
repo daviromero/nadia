@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='nadia-proof',
-    version='0.1.4',
+    version='0.1.5',
     license='MIT',
     author="Davi Romero de Vasconcelos",
     author_email='daviromero@ufc.br',
@@ -19,7 +19,8 @@ setup(
     long_description_content_type='text/markdown',
     keywords='Natural Deduction, Teaching Logic, Educational Software', 
     install_requires=[
-          'rply',
+        'rply',
+        'ipywidgets',
       ],
 
 )
