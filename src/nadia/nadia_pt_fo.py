@@ -123,7 +123,7 @@ class NegationFormula():
 
     def toString(self, parentheses= False):
         if parentheses:
-            string = '(~' + self.formula.toString()+')'
+            string = '(~' + self.formula.toString(parentheses=parentheses)+')'
         elif not isinstance(self.formula, BinaryFormula):
             string = '~' + self.formula.toString()
         else:
