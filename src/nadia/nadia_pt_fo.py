@@ -1983,7 +1983,6 @@ class ParserNadia():
         @self.pg.production('step : NUM DOT formula NEG_ELIM NUM DASH NUM')
         def Wrong_use_conective_references(p):
             self.has_error = True
-            print("aqui",p[0].value)
             wrong_rule = WrongDef(p[0].value, p[2])
             deduction_result.add_error(self.get_error(constants.INVALID_RULE, p[3], wrong_rule))
             return p[0], p[2]
@@ -1992,7 +1991,6 @@ class ParserNadia():
         @self.pg.production('step : NUM DOT formula AND_ELIM NUM DASH NUM')
         def Wrong_use_conective_reference(p):
             self.has_error = True
-            print("aqui",p[0].value)
             wrong_rule = WrongDef(p[0].value, p[2])
             deduction_result.add_error(self.get_error(constants.INVALID_RULE_ONE_REFERENCE, p[3], wrong_rule))
             return p[0], p[2]
