@@ -766,6 +766,8 @@ class constants:
   IS_NOT_BOTTOM = 40
   INVALID_CONCLUSION_UNIVERSAL_LAST_RULE = 41
   BOX_MUST_HAVE_ONLY_A_VARIABLE = 42
+  INVALID_RULE = 43
+  INVALID_RULE_ONE_REFERENCE = 44
 
 
 ## File ast.py
@@ -1766,6 +1768,8 @@ class ParserNadia():
             return p[0], formula_result[0]
 
 
+
+
         @self.pg.production('step : NUM DOT formula HYPOTHESIS')
         @self.pg.production('step : NUM DOT formula ATOM')
         @self.pg.production('step : NUM DOT OPEN_BRACKET formula ATOM')
@@ -1971,6 +1975,29 @@ class ParserNadia():
             self.box_latex += "{} & $\\forall i$ {}-{}\\\\\n".format(formula.toLatex(), p[4].value, p[6].value)
             return p[0], formula_result[0]
 
+        @self.pg.production('step : NUM DOT formula IMP_ELIM NUM ')
+        @self.pg.production('step : NUM DOT formula IMP_ELIM NUM DASH NUM')
+        @self.pg.production('step : NUM DOT formula AND_INTROD NUM ')
+        @self.pg.production('step : NUM DOT formula AND_INTROD NUM DASH NUM')
+        @self.pg.production('step : NUM DOT formula NEG_ELIM NUM ')
+        @self.pg.production('step : NUM DOT formula NEG_ELIM NUM DASH NUM')
+        def Wrong_use_conective_references(p):
+            self.has_error = True
+            print("aqui",p[0].value)
+            wrong_rule = WrongDef(p[0].value, p[2])
+            deduction_result.add_error(self.get_error(constants.INVALID_RULE, p[3], wrong_rule))
+            return p[0], p[2]
+
+        @self.pg.production('step : NUM DOT formula AND_ELIM NUM COMMA NUM ')
+        @self.pg.production('step : NUM DOT formula AND_ELIM NUM DASH NUM')
+        def Wrong_use_conective_reference(p):
+            self.has_error = True
+            print("aqui",p[0].value)
+            wrong_rule = WrongDef(p[0].value, p[2])
+            deduction_result.add_error(self.get_error(constants.INVALID_RULE_ONE_REFERENCE, p[3], wrong_rule))
+            return p[0], p[2]
+
+
         @self.pg.production('formula : EXT formula')
         @self.pg.production('formula : ALL formula')
         @self.pg.production('formula : formula OR formula')
@@ -2100,7 +2127,11 @@ class ParserNadia():
         elif type_error == constants.COPY_DIFFERENT_FORMULE:
             erro += "^, A Fórmula referenciada para cópia é diferente da definida para essa regra."
         elif type_error == constants.INVALID_HIP_PRE_WRITE:
-            erro += "^, Esperado o termo pre."
+            erro += "^, uma hipótese só pode ser usado no início de uma caixa e é introduzida apenas por uma regra de inferência."
+        elif type_error == constants.INVALID_RULE:
+            erro += "^, a regra {} deve ter duas referências separadas por vírgula.".format(token_error.value)
+        elif type_error == constants.INVALID_RULE_ONE_REFERENCE:
+            erro += "^, a regra {} deve ter uma única referência.".format(token_error.value)
         elif type_error == constants.EXCEDENT_HIP_PRE_WRITE:
             erro += "^, Não é esperado texto depois de pre."
         elif type_error == constants.USING_DESCARTED_RULE:
