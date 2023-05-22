@@ -904,7 +904,7 @@ class ImplicationIntroductionDef():
     def toLatex(self, symbol_table):
         hypothesis_number = str(len(hypothesis) + 1)
         hypothesis[self.reference1.value] = hypothesis_number
-        latex = '\\infer[\\!\\!{\\rightarrow\\text{i, }'+ hypothesis_number +'}]{'+self.formula.toLatex()+'}{'+symbol_table.get_rule(self.reference2.value).toLatex(symbol_table)+'}'
+        latex = '\\infer[\\!\\!{\\rightarrow\\text{i}^{_'+ hypothesis_number +'}}]{'+self.formula.toLatex()+'}{'+symbol_table.get_rule(self.reference2.value).toLatex(symbol_table)+'}'
         return latex
 
 class DisjunctionIntroductionDef():
@@ -1068,7 +1068,7 @@ class DisjunctionEliminationDef():
         hypothesis[self.reference2.value] = hypothesis_number1
         hypothesis_number2 = str(len(hypothesis) + 1)
         hypothesis[self.reference4.value] = hypothesis_number2
-        latex = '\\infer[\\!\\!{\\lor\\text{e, }'+ hypothesis_number1 + ', ' + hypothesis_number2 +'}]{'+self.formula.toLatex()+'}{{'+symbol_table.get_rule(self.reference1.value).toLatex(symbol_table)+'}&{'+symbol_table.get_rule(self.reference3.value).toLatex(symbol_table)+'}&{'+symbol_table.get_rule(self.reference5.value).toLatex(symbol_table)+'}}'
+        latex = '\\infer[\\!\\!{\\lor\\text{e}^{_{'+ hypothesis_number1 + ', ' + hypothesis_number2 +'} } }]{'+self.formula.toLatex()+'}{{'+symbol_table.get_rule(self.reference1.value).toLatex(symbol_table)+'}&{'+symbol_table.get_rule(self.reference3.value).toLatex(symbol_table)+'}&{'+symbol_table.get_rule(self.reference5.value).toLatex(symbol_table)+'}}'
         return latex
 
 class NegationIntroductionDef():
@@ -1107,7 +1107,7 @@ class NegationIntroductionDef():
     def toLatex(self, symbol_table):
         hypothesis_number = str(len(hypothesis) + 1)
         hypothesis[self.reference1.value] = hypothesis_number
-        latex = '\\infer[\\!\\!{\\lnot\\text{i, }'+ hypothesis_number +'}]{'+self.formula.toLatex()+'}{'+symbol_table.get_rule(self.reference2.value).toLatex(symbol_table)+'}'
+        latex = '\\infer[\\!\\!{\\lnot\\text{i}^{_'+ hypothesis_number +'}}]{'+self.formula.toLatex()+'}{'+symbol_table.get_rule(self.reference2.value).toLatex(symbol_table)+'}'
         return latex
 
 class NegationEliminationDef():
@@ -1204,7 +1204,7 @@ class RaaDef():
     def toLatex(self, symbol_table):
         hypothesis_number = str(len(hypothesis) + 1)
         hypothesis[self.reference1.value] = hypothesis_number
-        latex = '\\infer[\\!\\!{\\text{raa}, '+ hypothesis_number +'}]{'+self.formula.toLatex()+'}{'+symbol_table.get_rule(self.reference2.value).toLatex(symbol_table)+'}'
+        latex = '\\infer[\\!\\!{\\text{raa}^_{'+ hypothesis_number +'} }]{'+self.formula.toLatex()+'}{'+symbol_table.get_rule(self.reference2.value).toLatex(symbol_table)+'}'
         return latex
 
 class CopyDef():
@@ -1372,7 +1372,7 @@ class ExistsEliminationtionDef():
     def toLatex(self, symbol_table):
         hypothesis_number = str(len(hypothesis) + 1)
         hypothesis[self.reference2.value] = hypothesis_number
-        latex = '\\infer[\\!\\!{\\exists\\text{e, }'+ hypothesis_number +'}]{'
+        latex = '\\infer[\\!\\!{\\exists\\text{e}^{_'+ hypothesis_number +'} }]{'
         latex += self.formula.toLatex()+'}{'
         latex += symbol_table.get_rule(self.reference1.value).toLatex(symbol_table)
         latex += ' & '+symbol_table.get_rule(self.reference3.value).toLatex(symbol_table)+ '}'
