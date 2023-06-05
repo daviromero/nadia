@@ -110,7 +110,7 @@ def nadia_theorem(input_theorem, input_proof='', height_layout='300px',default_g
               set_premisses = set([p.toString() for p in premisses])
               set_premisses_result = set([p.toString() for p in result.premisses])
               if(conclusion==result.conclusion and set_premisses==set_premisses_result):
-                display(HTML(rf'<font color="blue">Parabéns! A demonstraçãoo de {s_theorem} está correta.</font>'))
+                display(HTML(rf'<font color="blue">Parabéns! A demonstração de {s_theorem} está correta.</font>'))
                 msg =[]
                 if(cGentzen.value):
                   msg.append("Código Latex no Estilo de Gentzen:")
