@@ -745,15 +745,15 @@ class constants:
   INVALID_SUBSTITUTION_UNIVERSAL = 19
   INVALID_UNIVERSAL_FORMULA = 20
   INVALID_SUBSTITUTION_EXISTS = 21
-  INVALID_EXISTENCIAL_FORMULA = 22
-  INVALID_SUBSTITUTION_EXISTENCIAL = 23
+  INVALID_EXISTENTIAL_FORMULA = 22
+  INVALID_SUBSTITUTION_EXISTENTIAL = 23
   VARIABLE_IS_NOT_FRESH_VARIABLE = 24
-  INVALID_CONCLUSION_EXISTENCIAL = 25
+  INVALID_CONCLUSION_EXISTENTIAL = 25
   INVALID_CONCLUSION_UNIVERSAL = 26
   INVALID_SCOPE_DELIMITER = 27
   BOX_MUST_HAVE_A_VARIABLE = 28
   BOX_MUST_BE_DISPOSED_BY_RULE = 29
-  INVALID_CONCLUSION_EXISTENCIAL_LAST_RULE = 30
+  INVALID_CONCLUSION_EXISTENTIAL_LAST_RULE = 30
   INVALID_BOX_RESULT = 31
   IS_NOT_DISJUNCTION = 32
   IS_NOT_CONJUNCTION = 33
@@ -1303,7 +1303,7 @@ class ExistsIntroductionDef():
       # If the formula is not a existential formula
       if(not isinstance(self.formula, QuantifierFormula) or (isinstance(self.formula, QuantifierFormula) and not self.formula.is_existential())):
           parser.has_error = True
-          deduction_result.add_error(parser.get_error(constants.INVALID_EXISTENCIAL_FORMULA, formula_reference, self))
+          deduction_result.add_error(parser.get_error(constants.INVALID_EXISTENTIAL_FORMULA, formula_reference, self))
       # If the conclusion is a valid substitution for the variable in formula1
       if(isinstance(self.formula, QuantifierFormula) and not self.formula.valid_substitution(formula1)):
           parser.has_error = True
@@ -1355,19 +1355,19 @@ class ExistsEliminationtionDef():
       # If the rule conclusion is the same as the last formula of the box
       if(self.formula != formula3):
           parser.has_error = True
-          deduction_result.add_error(parser.get_error(constants.INVALID_CONCLUSION_EXISTENCIAL_LAST_RULE, self.reference3, self))
+          deduction_result.add_error(parser.get_error(constants.INVALID_CONCLUSION_EXISTENTIAL_LAST_RULE, self.reference3, self))
       # If the formula of the first reference is not a existential formula
       if(not isinstance(formula1, QuantifierFormula) or (isinstance(formula1, QuantifierFormula) and not formula1.is_existential())):
           parser.has_error = True
-          deduction_result.add_error(parser.get_error(constants.INVALID_EXISTENCIAL_FORMULA, formula_reference, self))
+          deduction_result.add_error(parser.get_error(constants.INVALID_EXISTENTIAL_FORMULA, formula_reference, self))
       # If the hypothesis formula (reference line 2) is a valid subtitutotion of the existential formula (reference line 1)
       if(isinstance(formula1, QuantifierFormula) and formula1.formula.substitution(formula1.variable, variable)!=formula2):
           parser.has_error = True
-          deduction_result.add_error(parser.get_error(constants.INVALID_SUBSTITUTION_EXISTENCIAL, self.reference2, self))
+          deduction_result.add_error(parser.get_error(constants.INVALID_SUBSTITUTION_EXISTENTIAL, self.reference2, self))
       # if the variable is a free variable at the conclusion formula (referecne line 3)
       if(variable in formula3.free_variables()):
           parser.has_error = True
-          deduction_result.add_error(parser.get_error(constants.INVALID_CONCLUSION_EXISTENCIAL, self.reference2, self))
+          deduction_result.add_error(parser.get_error(constants.INVALID_CONCLUSION_EXISTENTIAL, self.reference2, self))
 
     def toLatex(self, symbol_table):
         hypothesis_number = str(len(hypothesis) + 1)
@@ -1417,7 +1417,7 @@ class ForAllIntroductiontionDef():
       # If the formula of the first reference is not a existential formula
       if(not isinstance(self.formula, QuantifierFormula) or (isinstance(self.formula, QuantifierFormula) and not self.formula.is_universal())):
           parser.has_error = True
-          deduction_result.add_error(parser.get_error(constants.INVALID_EXISTENCIAL_FORMULA, formula_reference, self))
+          deduction_result.add_error(parser.get_error(constants.INVALID_EXISTENTIAL_FORMULA, formula_reference, self))
       # If the conclusion is a universal formula of the last formula (reference line 2) by substitution of the variable
       if(isinstance(self.formula, QuantifierFormula) and self.formula.formula.substitution(self.formula.variable, variable)!=formula2):
           parser.has_error = True
@@ -2150,13 +2150,13 @@ class ParserNadia():
             erro += "^, Esta caixa dever ser fechada em linha imediatamente posterior pela regra que a introduziu."
         elif type_error == constants.INVALID_SUBSTITUTION_UNIVERSAL:
             erro += "^, A fórmula {} não é uma substituição válida da fórmula universal refenciada na linha {}.".format(rule.formula.toString(), rule.reference1.value)
-        elif type_error == constants.INVALID_CONCLUSION_EXISTENCIAL_LAST_RULE:
+        elif type_error == constants.INVALID_CONCLUSION_EXISTENTIAL_LAST_RULE:
             erro += "^, A formula da conclusão desta regra deve ser a mesma fórmula refenciada na linha {}.".format(token_error.value)
         elif type_error == constants.INVALID_CONCLUSION_UNIVERSAL_LAST_RULE:
             erro += "^, A formula da conclusão desta regra deve ser a quantificação universal da fórmula refenciada na linha {} com a variável definida neste escopo.".format(token_error.value)
         elif type_error == constants.INVALID_UNIVERSAL_FORMULA:
             erro += "^, A fórmula referenciada na regra do universal não é uma fórmula do tipo universal."
-        elif type_error == constants.INVALID_SUBSTITUTION_EXISTENCIAL:
+        elif type_error == constants.INVALID_SUBSTITUTION_EXISTENTIAL:
             erro += "^, A fórmula {} não é uma substituição válida da fórmula existencial refenciada na linha {}.".format(rule.formula.toString(), rule.reference1.value)
 #            erro += "^, A fórmula refenciada na linha {} não é uma substituição correta da variável na fórmula do existencial desta regra.".format(token_error.value)
         elif type_error == constants.VARIABLE_IS_NOT_FRESH_VARIABLE:
@@ -2165,7 +2165,7 @@ class ParserNadia():
             erro += "^, A caixa que inicia na linha {} deve iniciar com uma variável para esta regra.".format(token_error.value) 
         elif type_error == constants.BOX_MUST_HAVE_ONLY_A_VARIABLE:
             erro += "^, A caixa que inicia na linha {} não tem hipótese. A caixa deve iniciar com uma variável apenas para a regra da introdução do universal.".format(token_error.value) 
-        elif type_error == constants.INVALID_CONCLUSION_EXISTENCIAL:
+        elif type_error == constants.INVALID_CONCLUSION_EXISTENTIAL:
             erro += "^, A variável utilizada na conclusão dessa regra não pode ser a variável utilizada na caixa que inicia na linha {}.".format(token_error.value)
         elif type_error == constants.INVALID_CONCLUSION_UNIVERSAL:
             erro += "^, A variável utilizada na caixa que inicia na linha {} não pode ocorrer como variável livre na conclusão da fórmula e, portanto, não pode ser utilizada nesta regra.".format(token_error.value)
