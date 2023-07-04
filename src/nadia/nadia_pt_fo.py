@@ -254,7 +254,7 @@ class QuantifierFormula():
         if not isinstance(other, QuantifierFormula):
             return NotImplemented
 
-        return self.forAll != other.forAll and self.variable != other.variable and self.formula != other.formula
+        return self.forAll != other.forAll or self.variable != other.variable or self.formula != other.formula
 
     def is_universal(self):
       return self.forAll
