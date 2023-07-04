@@ -316,6 +316,8 @@ class QuantifierFormula():
 
     def valid_substitution(self, formula):
       free_vars = formula.free_variables()
+      if len(free_vars)==0:
+         return self.formula==formula
       for v in free_vars:
         fAux = self.formula.substitution(self.variable, v)
         if (fAux==formula):
