@@ -701,7 +701,7 @@ class SymbolTable:
         return 0
 
 ## dados_json.py
-import json
+#import json
 
 class natural_deduction_return:
     def __init__(self):
@@ -714,14 +714,14 @@ class natural_deduction_return:
     def add_error(self, error):
         self.errors.append(error)
 
-    def to_json(self):
-        result = {
-            'gentzen': self.gentzen,
-            'fitch': self.fitch,
-            'errors': self.errors
-        }
-        with open("result.json", "w", encoding='utf8') as f:
-            f.write(json.dumps(result, sort_keys=True, indent=3, ensure_ascii=False))
+ #   def to_json(self):
+ #       result = {
+ #           'gentzen': self.gentzen,
+ #           'fitch': self.fitch,
+ #           'errors': self.errors
+ #       }
+#        with open("result.json", "w", encoding='utf8') as f:
+#            f.write(json.dumps(result, sort_keys=True, indent=3, ensure_ascii=False))
 
 ## File constants.py
 class constants:
@@ -1447,7 +1447,7 @@ deduction_result = natural_deduction_return()
 
 def value_error_handle(exctype, value, tb):
     deduction_result.add_error(str(value))
-    deduction_result.to_json()
+#    deduction_result.to_json()
 
 sys.excepthook = value_error_handle
 
