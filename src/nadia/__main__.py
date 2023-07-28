@@ -1,5 +1,6 @@
 import argparse
 from nadia.nadia_pt_fo import check_proof
+import os
 
 parser = argparse.ArgumentParser(description='NADIA - Natural Deduction Proof Assistant.')
 parser.add_argument("-i", type=str,help="Arquivo de entrada com a prova em NADIA.")
@@ -9,10 +10,10 @@ if args.i is not None: fileName = args.i
 
 
 def app(fileName):
-    f = open(fileName, 'r')
-    print(f)
-    if f==None:
+    if not os.path.isfile(fileName):
         return "Arquivo não encontradao"
+
+    f = open(fileName, 'r')
 
     input_proof = f.read()
 
