@@ -2232,12 +2232,26 @@ class ParserNadia():
         return ", ".join(f.toLatex(parentheses=parentheses) for f in premisses) +' \\vdash '+conclusion.toLatex(parentheses=parentheses)
 
 
-def check_proof(text_input, show_fitch=True, show_gentzen=True):
+def check_proof(input_proof, input_theorem=None, show_fitch=True, show_gentzen=True):
     try:
-        result = ParserNadia.getProof(text_input)
+        result = ParserNadia.getProof(input_proof)
         r = ''
+
         if(result.errors==[]):
-            r += "A demonstração está correta."
+            if input_theorem!=None: 
+                premisses, conclusion = ParserTheorem.getTheorem(input_theorem)
+                if conclusion == None:
+                    return f'{input_theorem} não é um teorema válido!'
+
+                s_theorem = ParserNadia.toString(result.premisses, result.conclusion)
+                set_premisses = set([p.toString() for p in premisses])
+                set_premisses_result = set([p.toString() for p in result.premisses])
+                if(conclusion==result.conclusion and set_premisses==set_premisses_result):
+                    r += "A demonstração está correta."
+                else:
+                    r += f"Sua demostração de {s_theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}"
+            else:
+                r += "A demonstração está correta."
             if show_fitch:
                 r += "\n\nCódigo da demonstração no estilo Fitch em Latex:\n"
                 r += str(result.fitch)

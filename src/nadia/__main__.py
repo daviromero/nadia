@@ -1,22 +1,23 @@
 import argparse
-from nadia.nadia_pt_fo import check_proof
+from nadia.nadia_pt_fo import check_proof, ParserTheorem
 import os
 
 parser = argparse.ArgumentParser(description='NADIA - Natural Deduction Proof Assistant.')
 parser.add_argument("-i", type=str,help="Arquivo de entrada com a prova em NADIA.")
+parser.add_argument("-t", type=str,help="Entre com o teorema a ser analisado.")
 args = parser.parse_args()
 fileName = 'example_nadia.txt'
+input_theorem = None
 if args.i is not None: fileName = args.i
+if args.t is not None: input_theorem = args.t
 
 
-def app(fileName):
+def app(fileName, input_theorem):
     if not os.path.isfile(fileName):
         return "Arquivo não encontradao"
-
     f = open(fileName, 'r')
 
     input_proof = f.read()
+    return check_proof(input_proof,input_theorem=input_theorem,show_fitch=False,show_gentzen=False)
 
-    return check_proof(input_proof,show_fitch=False,show_gentzen=False)
-
-print(app(fileName))
+print(app(fileName,input_theorem))
