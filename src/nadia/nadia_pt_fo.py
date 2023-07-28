@@ -2232,7 +2232,7 @@ class ParserNadia():
         return ", ".join(f.toLatex(parentheses=parentheses) for f in premisses) +' \\vdash '+conclusion.toLatex(parentheses=parentheses)
 
 
-def check_proof(input_proof, input_theorem=None, show_fitch=True, show_gentzen=True):
+def check_proof(input_proof, input_theorem=None, show_theorem=True, show_fitch=True, show_gentzen=True):
     try:
         result = ParserNadia.getProof(input_proof)
         r = ''
@@ -2248,10 +2248,14 @@ def check_proof(input_proof, input_theorem=None, show_fitch=True, show_gentzen=T
                 set_premisses_result = set([p.toString() for p in result.premisses])
                 if(conclusion==result.conclusion and set_premisses==set_premisses_result):
                     r += "A demonstração está correta."
+                    if show_theorem:
+                       r += "\n"+s_theorem
                 else:
                     r += f"Sua demostração de {s_theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}"
             else:
                 r += "A demonstração está correta."
+                if show_theorem:
+                    r += "\n"+s_theorem
             if show_fitch:
                 r += "\n\nCódigo da demonstração no estilo Fitch em Latex:\n"
                 r += str(result.fitch)
