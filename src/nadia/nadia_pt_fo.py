@@ -2271,6 +2271,7 @@ def check_proof(input_proof, input_theorem=None, show_theorem=True, show_fitch=T
         s = traceback.format_exc()
         result = (s.split("@@"))[-1]
         r = "Os seguintes erros foram encontrados:\n\n"
+        r += result
         return r
     else:
         pass
