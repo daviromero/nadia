@@ -17,6 +17,6 @@ def app(fileName, input_theorem):
     f = open(fileName, 'r')
 
     input_proof = f.read()
-    return check_proof(input_proof,input_theorem=input_theorem,show_fitch=False,show_gentzen=False)
+    return check_proof(input_proof,input_theorem=input_theorem,display_fitch=False,display_gentzen=False)
 
 print(app(fileName,input_theorem))
