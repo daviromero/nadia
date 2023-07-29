@@ -8,6 +8,7 @@ parser.add_argument("-t", type=str,default=None, help="Entre com o teorema a ser
 args = parser.parse_args()
 if args.i is not None: fileName = args.i
 if args.t is not None: input_theorem = args.t
+print("teste 0")
 
 
 def app(fileName, input_theorem):
@@ -18,4 +19,5 @@ def app(fileName, input_theorem):
     input_proof = f.read()
     return check_proof(input_proof,input_theorem=input_theorem,show_fitch=False,show_gentzen=False)
 
+print("teste 1")
 print(app(fileName,input_theorem))
