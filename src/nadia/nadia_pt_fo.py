@@ -2257,6 +2257,7 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_f
                 r += "A demonstração está correta."
                 if display_theorem:
                     r += "\n"+s_theorem
+                print(r)
             if display_fitch:
                 r += "\n\nCódigo da demonstração no estilo Fitch em Latex:\n"
                 r += str(result.fitch)
