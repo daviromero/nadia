@@ -2238,12 +2238,12 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_f
         r = ''
 
         if(result.errors==[]):
+            s_theorem = ParserNadia.toString(result.premisses, result.conclusion)
             if input_theorem!=None: 
                 premisses, conclusion = ParserTheorem.getTheorem(input_theorem)
                 if conclusion == None:
                     return f'{input_theorem} não é um teorema válido!'
 
-                s_theorem = ParserNadia.toString(result.premisses, result.conclusion)
                 set_premisses = set([p.toString() for p in premisses])
                 set_premisses_result = set([p.toString() for p in result.premisses])
                 if(conclusion==result.conclusion and set_premisses==set_premisses_result):
@@ -2253,7 +2253,6 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_f
                 else:
                     r += f"Sua demostração de {s_theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}"
             else:
-                print("Aqui")
                 r += "A demonstração está correta."
                 if display_theorem:
                     r += "\n"+s_theorem
@@ -2268,7 +2267,6 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_f
             r += "Os seguintes erros foram encontrados:\n\n"
             for error in result.errors:
                 r += str(error)
-        print(r)
         return r
     except ValueError:
         s = traceback.format_exc()
