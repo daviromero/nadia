@@ -1,13 +1,11 @@
 import argparse
-from nadia.nadia_pt_fo import check_proof, ParserTheorem
+from nadia.nadia_pt_fo import check_proof
 import os
 
 parser = argparse.ArgumentParser(description='NADIA - Natural Deduction Proof Assistant.')
-parser.add_argument("-i", type=str,help="Arquivo de entrada com a prova em NADIA.")
-parser.add_argument("-t", type=str,help="Entre com o teorema a ser analisado.")
+parser.add_argument("-i", type=str, required=True, help="Arquivo de entrada com a prova em NADIA.")
+parser.add_argument("-t", type=str,default=None, help="Entre com o teorema a ser analisado.")
 args = parser.parse_args()
-fileName = 'example_nadia.txt'
-input_theorem = None
 if args.i is not None: fileName = args.i
 if args.t is not None: input_theorem = args.t
 
