@@ -26,13 +26,15 @@ To facilitate the writing of the proofs, we made the following conventions in NA
 | LaTeX  |  $\backslash\textrm{lnot}$ | $\backslash\textrm{land}$ | $\backslash\textrm{lor}$ | $\backslash\textrm{rightarrow}$ | $\backslash\textrm{forall x}$ | $\backslash\textrm{exists x}$ | $\backslash\textrm{bot}$ | $[.~]$ | $\backslash\textrm{vdash}$ |
 | NADIA |  ~  | \& | $\mid$ | -> | Ax | Ex | @  | { } | \|- |
 
-![](https://github.com/daviromero/nadia/blob/main/NADIA-EXAMPLE.png)
+![](https://raw.githubusercontent.com/daviromero/nadia/main/NADIA-EXAMPLE.png)
 
 ## License
 NADIA is available by [**MIT License**](https://github.com/daviromero/nadia/blob/main/license.txt).
 
 ## Requirements:
-- You must install [rply 0.7.8 package](https://pypi.org/project/rply/)
+You must install 
+- [rply 0.7.8 package](https://pypi.org/project/rply/)
+- ipywidgets
 
 ## Install
 
@@ -49,7 +51,7 @@ pip install nadia-proof
 ## NADIA
 You can run NADIA with the command line: 
 ```bash
-python -m nadia -i input_proof_file [-t input_theorem]
+python -m nadia -i [input_proof_file] [-t input_theorem]
 ```
 ## NADIA in Voila
 You can run NADIA in Jupyter Nootebook or in a [Voilà](https://voila.readthedocs.io/) 
