@@ -29,4 +29,5 @@ setup(
     #
     # For example, the following would provide a command called `ultralytics` which
     # executes the function `main` from this package when invoked:
-    entry_points={'console_scripts': ['nadia=nadia.__main__:main', ], },
+    entry_points={'console_scripts': ['nadia=nadia.__main__:main', ], },    
+    
