@@ -51,7 +51,7 @@ pip install nadia-proof
 ## NADIA
 You can run NADIA with the command line: 
 ```bash
-python -m nadia -i [input_proof_file] [-t input_theorem]
+nadia -i [input_proof_file] [-t input_theorem]
 ```
 ## NADIA in Voila
 You can run NADIA in Jupyter Nootebook or in a [Voilà](https://voila.readthedocs.io/) 
