@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='nadia-proof',
-    version='0.1.8',
+    version='0.1.6',
     license='MIT',
     author="Davi Romero de Vasconcelos",
     author_email='daviromero@ufc.br',
@@ -22,6 +22,11 @@ setup(
         'rply',
         'ipywidgets',
       ],
-    entry_points={'console_scripts': ['nadia=nadia.__main__', ], },
-
-)
+    # To provide executable scripts, use entry points in preference to the
+    # "scripts" keyword. Entry points provide cross-platform support and allow
+    # `pip` to create the appropriate form of executable for the target
+    # platform.
+    #
+    # For example, the following would provide a command called `ultralytics` which
+    # executes the function `main` from this package when invoked:
+    entry_points={'console_scripts': ['nadia=nadia.__main__:main', ], },
