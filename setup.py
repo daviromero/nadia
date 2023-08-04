@@ -22,5 +22,6 @@ setup(
         'rply',
         'ipywidgets',
       ],
+    entry_points={'console_scripts': ['nadia=nadia.__main__', ], },
 
 )
