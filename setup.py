@@ -7,7 +7,11 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='nadia-proof',
+<<<<<<< HEAD
     version='0.1.9',
+=======
+    version='0.1.7',
+>>>>>>> 47ef69b6ff0339a9ccc1b393e9c166f20126655e
     license='MIT',
     author="Davi Romero de Vasconcelos",
     author_email='daviromero@ufc.br',
@@ -22,5 +26,6 @@ setup(
         'rply',
         'ipywidgets',
       ],
-
+    entry_points={'console_scripts': ['nadia=nadia.__main__:main', ], },    
+    
 )
