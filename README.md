@@ -1,7 +1,7 @@
 # Natural Deduction Proof Assistant (NADIA)
 
-The NADIA is a tool written in Python that can be used as a desktop application, or in a [web platform](https://sistemas.quixada.ufc.br/nadia/). The main idea is that the students can write their proofs as similar as possible to what is available in the textbooks and to what the students would usually write on paper. NADIA allows the students to automatically check whether a proof in the natural deduction is valid. If the proof is not correct, NADIA will display the errors of the proof. So, the students may make mistakes and learn from the errors. The web interface is very easy-to-use and has: 
-- An area for editing the proof in plain text. The students should write a proof in Fitch-style (see [ND Rules](https://github.com/daviromero/nadia/blob/main/ND-Rules.pdf)).
+The NADIA is a tool written in Python that can be used as a desktop application, or in a [web platform](https://sistemas.quixada.ufc.br/nadia/). There is a [Jupyter Notebook](https://colab.research.google.com/github/daviromero/logic4py/blob/main/src/book/Cap%C3%ADtulo%2012.1%20-%20Dedu%C3%A7%C3%A3o%20Natural%20da%20L%C3%B3gica%20de%20Primeira-Ordem%20no%20Estilo%20de%20Fitch.ipynb) (in Portuguese) that presents the Natural Deduction and NADIA concepts. A Playlist of all Fitch-Style Natural Deduction content is available on [YouTube](https://youtube.com/playlist?list=PLfOnKvd6pFiogX1TEA5ZTzZLoC9H-hx9R). The main idea is that the students can write their proofs as similar as possible to what is available in the textbooks and to what the students would usually write on paper. NADIA allows the students to automatically check whether a proof in the natural deduction is valid. If the proof is not correct, NADIA will display the errors of the proof. So, the students may make mistakes and learn from the errors. The web interface is very easy-to-use and has: 
+- An area for editing the proof in plain text. The students should write a proof in Fitch-style (see [ND Rules](https://raw.githubusercontent.com/daviromero/anita/main/ND-Rules.pdf)).
 - A message area to display whether the proof is valid, the countermodel, or the errors on the proof.
 - And the following links: 
   - Check, to check the correctness of the proof; 
@@ -29,7 +29,7 @@ To facilitate the writing of the proofs, we made the following conventions in NA
 ![](https://raw.githubusercontent.com/daviromero/nadia/main/NADIA-EXAMPLE.png)
 
 ## License
-NADIA is available by [**MIT License**](https://github.com/daviromero/nadia/blob/main/license.txt).
+NADIA is available by [**MIT License**](https://raw.githubusercontent.com/daviromero/anita/main/license.txt).
 
 ## Requirements:
 You must install 
@@ -51,7 +51,7 @@ pip install nadia-proof
 ## NADIA
 You can run NADIA with the command line: 
 ```bash
-python -m nadia -i [input_proof_file] [-t input_theorem]
+nadia -i [input_proof_file] [-t input_theorem]
 ```
 ## NADIA in Voila
 You can run NADIA in Jupyter Nootebook or in a [Voilà](https://voila.readthedocs.io/) 
