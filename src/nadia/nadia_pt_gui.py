@@ -25,7 +25,7 @@ def nadia(input_proof='', input_text_assumptions=[], input_text_conclusion='', h
       q_assumptions += f'\n1. {assumption}'
       i+=1
     display(Markdown(q_assumptions))
-    display(Markdown(r'<b>Considere a afirmação abaixo segue logicamente das afirmações acima:'))
+    display(Markdown(r'<b>Podemos concluir que a afirmação abaixo segue logicamente das afirmações acima:'))
     q_conclusion =f'\n{i}. {input_text_conclusion}'
     display(Markdown(q_conclusion))
     display(Markdown('### Represente as afirmações acima em lógica e digite sua demonstração em Dedução Natural:'))
